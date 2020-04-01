@@ -1,0 +1,68 @@
+{
+  "name": "@elm-tooling/elm-language-server",
+  "description": "Implementation of an elm language server in node.",
+  "version": "1.6.3",
+  "author": "Kolja Lampe",
+  "license": "MIT",
+  "files": [
+    "out"
+  ],
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elm-tooling/elm-language-server"
+  },
+  "dependencies": {
+    "elm-analyse": "github:elm-tooling/elm-analyse#1a665a6e540d7d11b29b3c5e3c52089704325d9c",
+    "execa": "^4.0.0",
+    "fast-diff": "^1.2.0",
+    "globby": "^11.0.0",
+    "pjson": "1.0.9",
+    "rxjs": "^6.5.4",
+    "vscode-languageserver": "^6.1.1",
+    "vscode-languageserver-textdocument": "1.0.1",
+    "vscode-uri": "^2.1.1",
+    "web-tree-sitter": "^0.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "@types/node": "13.7.6",
+    "copyfiles": "^2.2.0",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "tree-sitter-cli": "^0.16.4",
+    "tree-sitter-elm": "^2.7.6",
+    "ts-jest": "^25.2.1",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.1.0",
+    "tslint-sonarts": "^1.9.0",
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "copy-wasm": "copyfiles ./tree-sitter-elm.wasm out",
+    "compile": "npm run copy-wasm && tsc -p ./",
+    "watch": "npm run copy-wasm && tsc -watch -p ./",
+    "lint": "tslint -p tsconfig.json",
+    "format:fix": "pretty-quick --staged",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "build-tree-sitter": "tree-sitter build-wasm ./node_modules/tree-sitter-elm",
+    "test": "jest"
+  },
+  "bin": {
+    "elm-language-server": "./out/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "elm",
+    "elm-lang",
+    "language server",
+    "language-server",
+    "lsp"
+  ]
+}
